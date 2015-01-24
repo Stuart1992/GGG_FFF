@@ -13,6 +13,7 @@ public class FoodController : MonoBehaviour {
 
 		GameObject go = GameObject.Find ("GameController");
 		gc = go.GetComponent<GameController>();
+	//	initialV = rigidbody2D.velocity;
 		rigidbody2D.isKinematic = true;  //prevents projectiles from falling before sim runs
 	}
 	// Update is called once per frame
@@ -20,7 +21,8 @@ public class FoodController : MonoBehaviour {
 		//upon hitting spacebar the simulation begins for the projectiles
 		if (unfrozen == false & !gc.IsTimeFrozen) {
 			    rigidbody2D.isKinematic = false;
-				rigidbody2D.AddRelativeForce ((initialV * rigidbody2D.mass) / Time.fixedDeltaTime);
+
+				rigidbody2D.AddRelativeForce((initialV * rigidbody2D.mass)/Time.fixedDeltaTime);
 			    unfrozen = true;
 				}
 	}
