@@ -9,19 +9,17 @@ public class JumpInputController : MonoBehaviour {
 	private Vector2 aimPoint;
 	private bool isTrackingMouse=false;
 	
-	
-	//docs say this should work but no dice - assume it is a problem with 2D vs 3D box colliders??
-	void OnMouseDown()
-	{
-		isTrackingMouse = true;
-		Debug.Log ("YOU CLICKED ON THE GIRL!");
-	}
-	
 	void Start () {
 		arrow = (Transform) GameObject.Instantiate(ArrowPrefab);
 		arrow.position = new Vector3(999,999,0);
+		aimPoint = transform.position;
 	}	
 	
+	void OnMouseDown()
+	{
+		isTrackingMouse = true;
+	}
+		
 	void Update () {
 		if(isTrackingMouse)
 		{
@@ -36,8 +34,6 @@ public class JumpInputController : MonoBehaviour {
 			}
 				
 		}			
-
-		
 	}
 	
 	private void PointArrowToAimPoint()
