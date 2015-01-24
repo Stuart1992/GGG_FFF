@@ -57,6 +57,7 @@
      <Compile Include="Assets\LDStarter\Scripts\PlayerMovementController.cs" />
      <Compile Include="Assets\LDStarter\Scripts\PlayerStatus.cs" />
      <Compile Include="Assets\LDStarter\Scripts\TestBoxCollision.cs" />
+     <Compile Include="Assets\Scripts\FoodController.cs" />
      <None Include="Assets\LDStarter\README.txt" />
      <None Include="Assets\LDStarter\UI\ken_fonts\license.txt" />
  <Reference Include="UnityEngine.UI">
