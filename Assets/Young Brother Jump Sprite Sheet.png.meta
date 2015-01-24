@@ -1,0 +1,102 @@
+fileFormatVersion: 2
+guid: 2f643fec64f03fe4c9ea6435fdc845be
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Young Brother Jump Sprite Sheet_0
+    21300002: Young Brother Jump Sprite Sheet_1
+    21300004: Young Brother Jump Sprite Sheet_2
+    21300006: Young Brother Jump Sprite Sheet_3
+    21300008: Young Brother Jump Sprite Sheet_4
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Young Brother Jump Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 116
+        width: 431
+        height: 431
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Young Brother Jump Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 116
+        width: 401
+        height: 436
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Young Brother Jump Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 96
+        width: 359
+        height: 532
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Young Brother Jump Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 118
+        width: 389
+        height: 510
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Young Brother Jump Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1757
+        y: 116
+        width: 355
+        height: 510
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

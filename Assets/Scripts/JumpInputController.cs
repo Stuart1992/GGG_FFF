@@ -16,10 +16,12 @@ public class JumpInputController : MonoBehaviour {
 	private GameController gc;
 	private Vector2 startPos;
 	private float startMass;
+	private Animator anim;
 	
 	void Start () {
 		GameObject go = GameObject.Find ("GameController");
-		gc = go.GetComponent<GameController>();
+		gc = go.GetComponent<GameController>();		
+		anim = gameObject.GetComponent<Animator>();
 		
 		arrow = (Transform) GameObject.Instantiate(ArrowPrefab);
 		startPos = transform.position;
@@ -36,7 +38,8 @@ public class JumpInputController : MonoBehaviour {
 		hasJumped = false;
 		hitByPie = false;
 		arrow.position = new Vector3(999,999,0);
-		aimPoint = transform.position;		
+		aimPoint = transform.position;
+		anim.SetBool("Jumping", false);
 	}
 	
 	public void HitByPie()
@@ -90,7 +93,10 @@ public class JumpInputController : MonoBehaviour {
 		
 		
 		Vector2 jumpVec = (aimPoint - (Vector2)transform.position);
-		float aimSize = jumpVec.magnitude;		
+		float aimSize = jumpVec.magnitude;	
+		if(aimSize > 0.1f)
+			anim.SetBool("Jumping", true);
+			
 		float jumpFactor = aimSize/MaxArrowSize;
 		Debug.Log ("               jumpVec = " + jumpVec + " aimSize = " + aimSize + "  jumpFactor = " + jumpFactor);
 		
