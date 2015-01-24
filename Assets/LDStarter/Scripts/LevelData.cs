@@ -13,9 +13,12 @@ public class LevelData {
 
 	public List<Transform> Transforms { get; set; }
 
+	public List<Transform> foodData { get; set; }
+
 	public LevelData(int level)
 	{
 		Level = level;
 		Transforms = new List<Transform>();
+		foodData = new List<Transform>();
 	}
 }

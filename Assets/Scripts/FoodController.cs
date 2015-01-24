@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class FoodController : MonoBehaviour {
-
+	
 	public Vector2 initialV;
 
 	// Use this for initialization
