@@ -21,7 +21,7 @@ public class LevelGenerator {
 		int difficulty = (level + 3) / 2;
 		for (int i = 0; i < difficulty; i++) 
 		{
-			data.foodData.Add(foodItemPrefabs[0]);
+			data.foodData.Add(foodItemPrefabs[Random.Range(0,foodItemPrefabs.Count)]);
 		}
 
 		return data;
