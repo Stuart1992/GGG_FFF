@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 
 	public List<Transform> FoodItemPrefabs;
-	public bool IsTimeFrozen=true;
+	public List<Transform> KidsList;
 
 	public Texture MenuTitleTexture;
 	public Texture LevelTexture;
@@ -17,7 +17,8 @@ public class GameController : MonoBehaviour {
 	private bool guiInitialized=false;
 
 	public LevelData CurrentLevel { get; set; }
-
+	public bool IsTimeFrozen=true;
+	
 	private Transform Player;
 	private PlayerStatus pstat;
 
@@ -71,7 +72,12 @@ public class GameController : MonoBehaviour {
 			break;
 
 		case GameState.Running:
-						
+			if(Time.time - lastSwitchTime > 5)
+			{
+				CurrentLevel.Over = true;
+				CurrentLevel.Victory = true;	
+			}
+			
 			if(CurrentLevel.Over)
 			{
 				foreach(Transform t in CurrentLevel.Transforms)
@@ -160,6 +166,7 @@ public class GameController : MonoBehaviour {
 			break;
 		case GameState.Running:
 			Debug.Log ("GameController: setting IsTimeFrozen true");
+			ResetKids();
 			IsTimeFrozen = true;
 			break;
 		case GameState.SummaryScreen:
@@ -171,5 +178,17 @@ public class GameController : MonoBehaviour {
 			
 		}
 
+	}
+	
+	private void ResetKids()
+	{
+		foreach(Transform kid in KidsList)
+		{
+			JumpInputController jic = kid.gameObject.GetComponent<JumpInputController>();
+			if(jic!=null)
+			{
+				jic.ResetForNewLevel();
+			}
+		}
 	}
 }

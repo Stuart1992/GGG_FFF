@@ -13,17 +13,20 @@ public class JumpInputController : MonoBehaviour {
 	private bool hasJumped;
 	
 	private GameController gc;
+	private Vector2 startPos;
 	
 	void Start () {
 		GameObject go = GameObject.Find ("GameController");
 		gc = go.GetComponent<GameController>();
 		
 		arrow = (Transform) GameObject.Instantiate(ArrowPrefab);
+		startPos = transform.position;
 		ResetForNewLevel();
 	}
 	
 	public void ResetForNewLevel()
 	{
+		transform.position = startPos;
 		isTrackingMouse = false;
 		hasJumped = false;
 		arrow.position = new Vector3(999,999,0);
