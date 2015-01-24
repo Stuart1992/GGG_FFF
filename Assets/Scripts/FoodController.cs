@@ -12,19 +12,25 @@ public class FoodController : MonoBehaviour {
 	void Start () {
 
 		GameObject go = GameObject.Find ("GameController");
-		gc = go.GetComponent<GameController>();
-	//	initialV = rigidbody2D.velocity;
+		gc = go.GetComponent<GameController>();	
 		rigidbody2D.isKinematic = true;  //prevents projectiles from falling before sim runs
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
+
 		//upon hitting spacebar the simulation begins for the projectiles
 		if (unfrozen == false & !gc.IsTimeFrozen) {
 			    rigidbody2D.isKinematic = false;
-
-				rigidbody2D.AddRelativeForce((initialV * rigidbody2D.mass)/Time.fixedDeltaTime);
+				rigidbody2D.AddForce((initialV * rigidbody2D.mass)/Time.fixedDeltaTime);
 			    unfrozen = true;
 				}
+		if (unfrozen) 
+		{
+			//updates angle of projectiles
+			float aimangle = Mathf.RoundToInt(Mathf.Atan2(rigidbody2D.velocity.x,
+			                                              rigidbody2D.velocity.y) * -180/Mathf.PI);		
+			transform.eulerAngles = new Vector3(0,0,aimangle + 90);	
+		}
 	}
 	
 	public void OnCollisionEnter2D(Collision2D col)
@@ -35,11 +41,13 @@ public class FoodController : MonoBehaviour {
 			Transform splat = (Transform) GameObject.Instantiate(SplatterPrefab);
 			gc.CurrentLevel.Transforms.Add(splat);
 			splat.position = transform.position;
+			splat.eulerAngles = transform.eulerAngles;
 			splat.parent = col.transform;
 			jic.HitByPie();
+			gc.CurrentLevel.Transforms.Remove(transform);
+			GameObject.Destroy(gameObject);
 		}
 		
-		gc.CurrentLevel.Transforms.Remove(transform);
-		GameObject.Destroy(gameObject);
+
 	}
 }
