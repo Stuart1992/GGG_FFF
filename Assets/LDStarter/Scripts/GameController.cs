@@ -5,11 +5,7 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 
 	public List<Transform> FoodItemPrefabs;
-<<<<<<< HEAD
 	public bool IsTimeFrozen=true;
-=======
-	public bool IsTimeFrozen;
->>>>>>> 5ed07aa454e96afdc01f64734612923622285889
 
 	public Texture MenuTitleTexture;
 	public Texture LevelTexture;
