@@ -1,14 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\JumpInputController.cs">
-    <Files>
-      <File FileName="Assets\Scripts\JumpInputController.cs" Line="29" Column="4" />
-=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/FoodController.cs">
     <Files>
       <File FileName="Assets/Scripts/FoodController.cs" Line="19" Column="1" />
->>>>>>> 196e6b8d850448c64b65c89322366bc47549e085
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

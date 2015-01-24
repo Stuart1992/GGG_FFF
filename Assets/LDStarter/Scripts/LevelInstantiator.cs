@@ -12,11 +12,13 @@ public class LevelInstantiator  {
 
 	public void InstantiateLevel(LevelData level)
 	{
-				
-		// ADD YOUR LEVEL INSTANTIATION CODE HERE
-		// read conceptual data in level and create transforms
-		// make sure to add to LevelData.Transforms for cleanup later
-		
+		//creates the list of food items
+		Transform food;
+		foreach (Transform t in level.foodData) {
+			food = (Transform) GameObject.Instantiate (t);
+			food.position = new Vector3((float)rand.NextDouble() * 3,(float)rand.NextDouble() * 3,0);
+			level.Transforms.Add(food);
+		}
 	}
 
 }

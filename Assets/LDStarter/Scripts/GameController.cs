@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 
 	public List<Transform> FoodItemPrefabs;
+	public bool IsTimeFrozen;
 
 	public Texture MenuTitleTexture;
 	public Texture LevelTexture;
@@ -39,7 +40,8 @@ public class GameController : MonoBehaviour {
 	{
 		rand = new System.Random();
 		CurrentLevel = new LevelData(0);
-		levelGenerator = new LevelGenerator(rand);
+		Debug.Log ("Out = " + FoodItemPrefabs.Count);
+		levelGenerator = new LevelGenerator(rand,FoodItemPrefabs);
 		levelInstantiator = new LevelInstantiator(rand);
 
 		EnterState (GameState.MenuTitleScreen);
