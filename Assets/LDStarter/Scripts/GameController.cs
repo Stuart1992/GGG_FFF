@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 
-	public Texture FullHeartTexture;
-	public Texture EmptyHeartTexture;
+	public List<Transform> FoodItemPrefabs;
 
 	public Texture MenuTitleTexture;
 	public Texture LevelTexture;
