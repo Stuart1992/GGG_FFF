@@ -14,9 +14,9 @@ public class LevelInstantiator  {
 	{
 		//variables for origin position of projectiles
 		float offsetX, offsetY, distribVar;
-		offsetX = -15;
-		offsetY = 8;
-		distribVar = 7;
+		offsetX = -20;
+		offsetY = 10;
+		distribVar = 10;
 
 		//variables for input force of projectiles
 		float xvelMin, xvelMax, yvelMin, yvelMax;
@@ -25,7 +25,7 @@ public class LevelInstantiator  {
 		yvelMin = 7;
 		yvelMax = 13;
 
-		//creates the list of food items with positions
+		//creates the list of food items with positions and angles
 		Transform food;
 		foreach (Transform t in level.foodData) {
 			food = (Transform) GameObject.Instantiate (t);
@@ -38,6 +38,10 @@ public class LevelInstantiator  {
 			fc.initialV = new Vector2(Random.Range(xvelMin,xvelMax),
 			                          Random.Range(yvelMin,yvelMax));
 
+			float aimangle = Mathf.RoundToInt(Mathf.Atan2(fc.initialV.x,
+			                                              fc.initialV.y) * -180/Mathf.PI);
+			Debug.Log ("aim angle = " + aimangle);
+			food.eulerAngles = new Vector3(0,0,aimangle + 90);	
 
 			level.Transforms.Add(food);
 		}
