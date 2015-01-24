@@ -4,6 +4,7 @@ using System.Collections;
 public class FoodController : MonoBehaviour {
 	
 	public Vector2 initialV;
+	public Transform SplatterPrefab;
 
 	private bool unfrozen;
 	private GameController gc;
@@ -21,5 +22,21 @@ public class FoodController : MonoBehaviour {
 				rigidbody2D.AddRelativeForce ((initialV * rigidbody2D.mass) / Time.fixedDeltaTime);
 			    unfrozen = true;
 				}
+	}
+	
+	public void OnCollisionEnter2D(Collision2D col)
+	{
+		JumpInputController jic = col.gameObject.GetComponent<JumpInputController>();
+		if(jic != null)
+		{
+			Transform splat = (Transform) GameObject.Instantiate(SplatterPrefab);
+			gc.CurrentLevel.Transforms.Add(splat);
+			splat.position = transform.position;
+			splat.parent = col.transform;
+			jic.HitByPie();
+		}
+		
+		gc.CurrentLevel.Transforms.Remove(transform);
+		GameObject.Destroy(gameObject);
 	}
 }

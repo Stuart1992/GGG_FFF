@@ -11,9 +11,11 @@ public class JumpInputController : MonoBehaviour {
 	private Vector2 aimPoint;
 	private bool isTrackingMouse;
 	private bool hasJumped;
+	private bool hitByPie;
 	
 	private GameController gc;
 	private Vector2 startPos;
+	private float startMass;
 	
 	void Start () {
 		GameObject go = GameObject.Find ("GameController");
@@ -21,16 +23,27 @@ public class JumpInputController : MonoBehaviour {
 		
 		arrow = (Transform) GameObject.Instantiate(ArrowPrefab);
 		startPos = transform.position;
+		startMass = rigidbody2D.mass;
 		ResetForNewLevel();
 	}
 	
 	public void ResetForNewLevel()
 	{
+		rigidbody2D.gravityScale = 2.0f;
 		transform.position = startPos;
+		rigidbody2D.mass = startMass;
 		isTrackingMouse = false;
 		hasJumped = false;
+		hitByPie = false;
 		arrow.position = new Vector3(999,999,0);
 		aimPoint = transform.position;		
+	}
+	
+	public void HitByPie()
+	{
+		hitByPie = true;
+		rigidbody2D.gravityScale = 0.1f;
+		StopMotion();
 	}
 	
 	void OnMouseDown()
@@ -100,5 +113,13 @@ public class JumpInputController : MonoBehaviour {
 		
 		float aimangle = Mathf.RoundToInt(Mathf.Atan2(diff.x, diff.y) * -180/Mathf.PI);		
 		arrow.eulerAngles = new Vector3(0,0,aimangle);		
+	}
+	
+	private void StopMotion()
+	{
+		rigidbody2D.mass = 1000;
+		Vector2 deltaV = new Vector2(1-rigidbody2D.velocity.x, -rigidbody2D.velocity.y);
+		Vector2 force = rigidbody2D.mass * deltaV / Time.fixedDeltaTime;
+		rigidbody2D.AddForce(force);
 	}
 }
