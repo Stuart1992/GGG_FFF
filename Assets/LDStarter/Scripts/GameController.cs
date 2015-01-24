@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 
 	public List<Transform> FoodItemPrefabs;
+	public bool IsTimeFrozen=true;
 
 	public Texture MenuTitleTexture;
 	public Texture LevelTexture;
@@ -78,6 +79,11 @@ public class GameController : MonoBehaviour {
 					GameObject.Destroy (t.gameObject);
 				}
 				EnterState (GameState.SummaryScreen);
+			}
+			else if(Input.GetKeyDown(KeyCode.Space))
+			{
+				Debug.Log ("GameController: setting IsTimeFrozen false");
+				IsTimeFrozen = false;
 			}
 			break;
 
@@ -153,7 +159,8 @@ public class GameController : MonoBehaviour {
 		
 			break;
 		case GameState.Running:
-		
+			Debug.Log ("GameController: setting IsTimeFrozen true");
+			IsTimeFrozen = true;
 			break;
 		case GameState.SummaryScreen:
 		
