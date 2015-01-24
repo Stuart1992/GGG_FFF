@@ -72,7 +72,7 @@ public class GameController : MonoBehaviour {
 			break;
 
 		case GameState.Running:
-			if(Time.time - lastSwitchTime > 5)
+			if(Input.GetKeyDown(KeyCode.X))
 			{
 				CurrentLevel.Over = true;
 				CurrentLevel.Victory = true;	
