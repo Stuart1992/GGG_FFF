@@ -38,11 +38,6 @@ public class GameController : MonoBehaviour {
 	void Start () 
 	{
 		rand = new System.Random();
-
-		GameObject pgo = GameObject.Find ("Player");
-		Player = pgo.transform;
-		pstat = pgo.GetComponent<PlayerStatus>();
-
 		CurrentLevel = new LevelData(0);
 		levelGenerator = new LevelGenerator(rand);
 		levelInstantiator = new LevelInstantiator(rand);
@@ -129,7 +124,7 @@ public class GameController : MonoBehaviour {
 			break;
 		case GameState.Running:
 			// ADD HUD CODE HERE
-			ShowHeartHUD();
+		//	ShowHeartHUD();
 			break;
 		case GameState.SummaryScreen:
 			GUI.DrawTexture(new Rect(5,5, 600,600),  SummaryTexture);
@@ -138,20 +133,6 @@ public class GameController : MonoBehaviour {
 			GUI.DrawTexture(new Rect(5,5, 600,600),  TutorialTexture);
 			break;
 			
-		}
-	}
-
-	private void ShowHeartHUD()
-	{
-		float heartSize = 32f;
-		for(int i = 0; i<pstat.MaxHealth; i++)
-		{
-			Texture tex = (pstat.Health>i) ? FullHeartTexture : EmptyHeartTexture;
-			Rect rect = new Rect(1 + i*heartSize*1.2f, 3, heartSize, heartSize);
-			GUI.DrawTexture(rect, tex);
-			
-			//GUI.DrawTexture(new Rect(7*Screen.width/8 + i*heartSize, 7*Screen.width/8, heartSize, heartSize), tex);
-			//GUI.DrawTextureWithTexCoords(new Rect(7*Screen.width/8+heartHeight/10 + iconInset, nextBoxYOff+nextBoxHgt/10 + iconInset, mag*nextIconSpace, mag*nextIconSpace ), ntex, new Rect(0,0, 12f/(float)ntex.width,1));
 		}
 	}
 	
@@ -166,20 +147,19 @@ public class GameController : MonoBehaviour {
 		switch(state)
 		{
 		case GameState.MenuTitleScreen:
-			Player.gameObject.SetActive(false);
+	
 			break;
 		case GameState.LevelScreen:
-			Player.gameObject.SetActive(false);
+		
 			break;
 		case GameState.Running:
-			Player.gameObject.SetActive(true);
-			Player.position = CurrentLevel.StartPosition;
+		
 			break;
 		case GameState.SummaryScreen:
-			Player.gameObject.SetActive(false);
+		
 			break;
 		case GameState.TutorialScreen:
-			Player.gameObject.SetActive(false);
+		
 			break;
 			
 		}
