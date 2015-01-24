@@ -40,7 +40,6 @@ public class GameController : MonoBehaviour {
 	{
 		rand = new System.Random();
 		CurrentLevel = new LevelData(0);
-		Debug.Log ("Out = " + FoodItemPrefabs.Count);
 		levelGenerator = new LevelGenerator(rand,FoodItemPrefabs);
 		levelInstantiator = new LevelInstantiator(rand);
 
