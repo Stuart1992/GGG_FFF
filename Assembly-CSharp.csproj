@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{E499DD17-7B92-E9A9-87E5-5627BD0CB801}</ProjectGuid>
+	<ProjectGuid>{E3EA7421-2B29-3A9F-F145-390ED8C884A9}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -57,6 +57,7 @@
      <Compile Include="Assets\LDStarter\Scripts\PlayerMovementController.cs" />
      <Compile Include="Assets\LDStarter\Scripts\PlayerStatus.cs" />
      <Compile Include="Assets\LDStarter\Scripts\TestBoxCollision.cs" />
+     <Compile Include="Assets\Scripts\JumpInputController.cs" />
      <None Include="Assets\LDStarter\README.txt" />
      <None Include="Assets\LDStarter\UI\ken_fonts\license.txt" />
  <Reference Include="UnityEngine.UI">
