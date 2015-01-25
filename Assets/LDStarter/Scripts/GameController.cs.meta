@@ -2,7 +2,21 @@ fileFormatVersion: 2
 guid: 6466c4d548b3cbd4d8d9ed04cc0e8e74
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - MenuTitleTexture: {instanceID: 0}
+  - LevelTexture: {instanceID: 0}
+  - SummaryTexture: {instanceID: 0}
+  - TutorialTexture: {instanceID: 0}
+  - jumpSound: {fileID: 8300000, guid: f32f38d5908efd040b34a572510578ef, type: 3}
+  - splat1Sound: {instanceID: 0}
+  - splat2Sound: {instanceID: 0}
+  - throw1Sound: {instanceID: 0}
+  - throw2Sound: {instanceID: 0}
+  - throw3Sound: {instanceID: 0}
+  - calloutBroSound: {instanceID: 0}
+  - calloutBigSound: {instanceID: 0}
+  - calloutLilSound: {instanceID: 0}
+  - GUIFont: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

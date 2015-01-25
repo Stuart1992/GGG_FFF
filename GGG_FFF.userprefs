@@ -1,9 +1,17 @@
 ﻿<Properties>
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\JumpInputController.cs">
     <Files>
       <File FileName="Assets\LDStarter\Scripts\LevelInstantiator.cs" Line="5" Column="1" />
       <File FileName="Assets\Scripts\JumpInputController.cs" Line="112" Column="19" />
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/LDStarter/Scripts/GameController.cs">
+    <Files>
+      <File FileName="Assets/Scripts/FoodController.cs" Line="60" Column="24" />
+      <File FileName="Assets/LDStarter/Scripts/GameController.cs" Line="124" Column="30" />
+>>>>>>> 082f3de3fccdf80b6106b97920cdbf4f83cc3ff6
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
