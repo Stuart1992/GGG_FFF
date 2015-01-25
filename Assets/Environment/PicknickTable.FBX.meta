@@ -1,20 +1,13 @@
 fileFormatVersion: 2
-guid: ae564f33816e74d43b9ab6686fd69e92
+guid: 0a2d0e5eb68d94fd49eb8a9433bcbdf8
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Bench
-    100002: //RootNode
-    100004: Table001
-    400000: Bench
-    400002: //RootNode
-    400004: Table001
-    2300000: Bench
-    2300002: Table001
-    3300000: Bench
-    3300002: Table001
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Table001
-    4300002: Bench
     9500000: //RootNode
   materials:
     importMaterials: 1
