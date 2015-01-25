@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour {
 	public Texture MomGirr;
 	public Texture MomAngry;
 
+	public Texture RunButton;
+
 	public AudioClip jumpSound;
 	public AudioClip splat1Sound;
 	public AudioClip splat2Sound;
@@ -195,7 +197,7 @@ public class GameController : MonoBehaviour {
 		case GameState.Running:
 			// ADD HUD CODE HERE
 		//	ShowHeartHUD();
-			if(GUI.Button (new Rect(300,500,100,50),"Click to Run"))
+			if(GUI.Button (new Rect(545,525,130,70),RunButton))
 			   {IsTimeFrozen = false;
 				Time.timeScale = 1;}
 

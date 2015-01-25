@@ -7,6 +7,11 @@ MonoImporter:
   - LevelTexture: {instanceID: 0}
   - SummaryTexture: {instanceID: 0}
   - TutorialTexture: {instanceID: 0}
+  - MomHappy: {instanceID: 0}
+  - MomOk: {instanceID: 0}
+  - MomGirr: {instanceID: 0}
+  - MomAngry: {instanceID: 0}
+  - RunButton: {fileID: 2800000, guid: 5022aba86f2a74dfe8e7363dbae03c32, type: 3}
   - jumpSound: {fileID: 8300000, guid: f32f38d5908efd040b34a572510578ef, type: 3}
   - splat1Sound: {instanceID: 0}
   - splat2Sound: {instanceID: 0}
