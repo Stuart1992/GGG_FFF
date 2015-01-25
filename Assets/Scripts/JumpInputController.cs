@@ -86,7 +86,6 @@ public class JumpInputController : MonoBehaviour {
 			}			
 		}		
 	}
-	
 	void FixedUpdate()
 	{
 		if(!gc.IsTimeFrozen && !hasJumped)
@@ -123,6 +122,7 @@ public class JumpInputController : MonoBehaviour {
 		
 		Debug.Log ("Girl jumping: force is "+ force);
 		rigidbody2D.AddForce(force);
+		iTween.Stab (gameObject,gc.jumpSound,0);
 	}
 	
 	private void PointArrowAndSetAimPoint()

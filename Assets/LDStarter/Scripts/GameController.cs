@@ -12,6 +12,18 @@ public class GameController : MonoBehaviour {
 	public Texture SummaryTexture;
 	public Texture TutorialTexture;
 
+	public AudioClip jumpSound;
+	public AudioClip splat1Sound;
+	public AudioClip splat2Sound;
+	public AudioClip throw1Sound;
+	public AudioClip throw2Sound;
+	public AudioClip throw3Sound;
+
+	public AudioClip calloutBroSound;
+	public AudioClip calloutBigSound;
+	public AudioClip calloutLilSound;
+	public bool playedCallout;
+
 	public Font GUIFont;
 	public int GUIFontSize;
 	private bool guiInitialized=false;
@@ -75,13 +87,39 @@ public class GameController : MonoBehaviour {
 			break;
 
 		case GameState.Running:
-			if(Time.time - lastSwitchTime > 1 && IsTimeFrozen)
-			{Time.timeScale = 0;}
+			if(Time.time - lastSwitchTime > 0.5f && IsTimeFrozen)
+			{
+				Time.timeScale *= 0.96f;
+				if(Time.timeScale < 0.4f)
+				{
+				Time.timeScale = 0;
+					if(!playedCallout)
+					{
+					switch(Random.Range (0,3))
+					{
+					case 0:
+						iTween.Stab(gameObject,calloutBroSound,0);
+							playedCallout = true;
+					break;
+					case 1:
+						iTween.Stab(gameObject,calloutLilSound,0);
+							playedCallout = true;
+					break;
+					case 2:
+						iTween.Stab(gameObject,calloutBigSound,0);
+							playedCallout = true;
+					break;
+					}//end inner switch
+					}
+				}
+			//	Time.timeScale = 0;
+			}
 		//	if(NumProjectiles <= 0) this the condition for when all pies hit the ground
 			if(Input.GetKeyDown(KeyCode.X) && !IsTimeFrozen)
 			{
 				CurrentLevel.Over = true;
-				CurrentLevel.Victory = true;	
+				CurrentLevel.Victory = true;
+				playedCallout = false;
 			}
 			if(CurrentLevel.Over)
 			{
