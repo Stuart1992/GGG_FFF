@@ -23,7 +23,14 @@ public class GameController : MonoBehaviour {
 	public AudioClip throw1Sound;
 	public AudioClip throw2Sound;
 	public AudioClip throw3Sound;
-
+	/*
+	public AudioClip hitBroSound1;
+	public AudioClip hitBroSound2;
+	public AudioClip hitLSSound1;
+	public AudioClip hitLSSound2;
+	public AudioClip hitBSSound1;
+	public AudioClip hitBSSound2;
+	*/
 	public AudioClip calloutBroSound;
 	public AudioClip calloutBigSound;
 	public AudioClip calloutLilSound;
@@ -188,6 +195,10 @@ public class GameController : MonoBehaviour {
 		case GameState.Running:
 			// ADD HUD CODE HERE
 		//	ShowHeartHUD();
+			if(GUI.Button (new Rect(300,500,100,50),"Click to Run"))
+			   {IsTimeFrozen = false;
+				Time.timeScale = 1;}
+
 			break;
 		case GameState.SummaryScreen:
 			if(NumFails <= 0){

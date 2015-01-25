@@ -1,12 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\JumpInputController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/LDStarter/Scripts/GameController.cs">
     <Files>
+<<<<<<< HEAD
       <File FileName="Assets\LDStarter\Scripts\LevelInstantiator.cs" Line="5" Column="1" />
       <File FileName="Assets\Scripts\JumpInputController.cs" Line="119" Column="47" />
       <File FileName="..\..\..\..\Unity\LD31OneScreen\Assets\LDStarter\Scripts\Characters\Player\PlayerMovementController.cs" Line="444" Column="1" />
       <File FileName="Assets\LDStarter\Scripts\GameController.cs" Line="256" Column="1" />
       <File FileName="Assets\Scripts\FoodController.cs" Line="66" Column="1" />
+=======
+      <File FileName="Assets/Scripts/JumpInputController.cs" Line="27" Column="2" />
+      <File FileName="Assets/LDStarter/Scripts/GameController.cs" Line="33" Column="2" />
+      <File FileName="Assets/Scripts/FoodController.cs" Line="14" Column="3" />
+      <File FileName="Assets/LDStarter/Scripts/LevelInstantiator.cs" Line="1" Column="1" />
+>>>>>>> f71a409653d601d5eee6c817d665a67becf70d60
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

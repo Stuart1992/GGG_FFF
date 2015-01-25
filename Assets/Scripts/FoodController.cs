@@ -8,6 +8,7 @@ public class FoodController : MonoBehaviour {
 
 	private bool unfrozen;
 	private GameController gc;
+
 	// Use this for initialization
 	void Start () {
 
@@ -35,6 +36,7 @@ public class FoodController : MonoBehaviour {
 		JumpInputController jic = col.gameObject.GetComponent<JumpInputController>();
 		if(jic != null || col.gameObject.tag == "Ground")
 		{
+			GameObject go = GameObject.Find ("GameController");
 			Transform splat = (Transform) GameObject.Instantiate(SplatterPrefab);
 			gc.CurrentLevel.Transforms.Add(splat);
 			splat.position = transform.position;
