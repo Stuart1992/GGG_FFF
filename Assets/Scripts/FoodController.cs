@@ -5,6 +5,8 @@ public class FoodController : MonoBehaviour {
 	
 	public Vector2 initialV;
 	public Transform SplatterPrefab;
+	public bool FacesMovement;
+	public bool CanBounce;
 
 	private bool unfrozen;
 	private GameController gc;
@@ -24,17 +26,20 @@ public class FoodController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
+		if(FacesMovement)
+		{
 			//updates angle of projectiles
 			float aimangle = Mathf.RoundToInt(Mathf.Atan2(rigidbody2D.velocity.x,
 			                                              rigidbody2D.velocity.y) * -180/Mathf.PI);		
 			transform.eulerAngles = new Vector3(0,0,aimangle + 90);	
+		}
 	
 	}
 
 	public void OnCollisionEnter2D(Collision2D col)
 	{
 		JumpInputController jic = col.gameObject.GetComponent<JumpInputController>();
-		if(jic != null || col.gameObject.tag == "Ground")
+		if(jic != null || (!CanBounce && col.gameObject.tag == "Ground"))
 		{
 			GameObject go = GameObject.Find ("GameController");
 			Transform splat = (Transform) GameObject.Instantiate(SplatterPrefab);
@@ -60,8 +65,14 @@ public class FoodController : MonoBehaviour {
 				}
 			}
 			gc.NumProjectiles--;
+				
 			gc.CurrentLevel.Transforms.Remove(transform);
 			GameObject.Destroy(gameObject);
 		}
+		else if(CanBounce && col.gameObject.tag == "Ground")
+		{
+			CanBounce = false;
+		}
+		
 	}
 }

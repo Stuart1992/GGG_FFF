@@ -55,14 +55,19 @@ public class LevelInstantiator  {
 		//creates the list of food items with positions and angles		
 		foreach (Transform t in level.foodData) {
 			food = (Transform) GameObject.Instantiate (t);
-			food.position = new Vector3(
-				(float)rand.NextDouble()* xdistribVar + offsetX,
-			    (float)rand.NextDouble()* ydistribVar + offsetY,0);
-
 			fc = food.gameObject.GetComponent<FoodController>();
 			
+			float heightFactor = 1;
+			if(fc.CanBounce)
+				heightFactor = 0.6f;		
+			
+			food.position = new Vector3(
+				(float)rand.NextDouble()* xdistribVar + offsetX,
+				((float)rand.NextDouble()* ydistribVar + offsetY) * heightFactor,0);
+
+			
 			fc.initialV = new Vector2(Random.Range(xvelMin,xvelMax),
-			                          Random.Range(yvelMin,yvelMax));
+			                          Random.Range(yvelMin,yvelMax*heightFactor) );
 
 			float aimangle = Mathf.RoundToInt(Mathf.Atan2(fc.initialV.x,
 			                                              fc.initialV.y) * -180/Mathf.PI);
