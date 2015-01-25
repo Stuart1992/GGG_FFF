@@ -37,18 +37,25 @@ public class FoodController : MonoBehaviour {
 	public void OnCollisionEnter2D(Collision2D col)
 	{
 		JumpInputController jic = col.gameObject.GetComponent<JumpInputController>();
-		if(jic != null)
+		if(jic != null || col.gameObject.tag == "Ground")
 		{
 			Transform splat = (Transform) GameObject.Instantiate(SplatterPrefab);
 			gc.CurrentLevel.Transforms.Add(splat);
 			splat.position = transform.position;
-			splat.eulerAngles = transform.eulerAngles;
-			splat.parent = col.transform;
-			jic.HitByPie();
+			
+			if(jic != null)  // hit player
+			{
+				splat.eulerAngles = transform.eulerAngles;
+				splat.parent = col.transform;
+				jic.HitByPie();			
+			}
+			else  // hit ground
+			{
+				splat.eulerAngles = new Vector3(0,0,-90);
+			}
+			
 			gc.CurrentLevel.Transforms.Remove(transform);
 			GameObject.Destroy(gameObject);
 		}
-		
-
 	}
 }
