@@ -37,6 +37,7 @@ public class FoodController : MonoBehaviour {
 			
 			if(jic != null)  // hit player
 			{
+				gc.NumFails++;
 				splat.eulerAngles = transform.eulerAngles;
 				splat.parent = col.transform;
 				jic.HitByPie();			
@@ -45,7 +46,7 @@ public class FoodController : MonoBehaviour {
 			{
 				splat.eulerAngles = new Vector3(0,0,-90);
 			}
-			
+			gc.NumProjectiles--;
 			gc.CurrentLevel.Transforms.Remove(transform);
 			GameObject.Destroy(gameObject);
 		}

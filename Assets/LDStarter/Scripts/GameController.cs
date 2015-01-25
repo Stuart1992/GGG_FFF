@@ -18,6 +18,9 @@ public class GameController : MonoBehaviour {
 
 	public LevelData CurrentLevel { get; set; }
 	public bool IsTimeFrozen=true;
+
+	public int NumFails = 0;
+	public int NumProjectiles;
 	
 	private Transform Player;
 	private PlayerStatus pstat;
@@ -73,13 +76,13 @@ public class GameController : MonoBehaviour {
 
 		case GameState.Running:
 			if(Time.time - lastSwitchTime > 1 && IsTimeFrozen)
-				{Time.timeScale = 0;}
-			if(Input.GetKeyDown(KeyCode.X))
+			{Time.timeScale = 0;}
+		//	if(NumProjectiles <= 0) this the condition for when all pies hit the ground
+			if(Input.GetKeyDown(KeyCode.X) && !IsTimeFrozen)
 			{
 				CurrentLevel.Over = true;
 				CurrentLevel.Victory = true;	
 			}
-			
 			if(CurrentLevel.Over)
 			{
 				foreach(Transform t in CurrentLevel.Transforms)
@@ -168,6 +171,8 @@ public class GameController : MonoBehaviour {
 		
 			break;
 		case GameState.Running:
+			NumFails = 0;
+			NumProjectiles = FoodItemPrefabs.Count;
 			Debug.Log ("GameController: setting IsTimeFrozen true");
 			ResetKids();
 			IsTimeFrozen = true;
