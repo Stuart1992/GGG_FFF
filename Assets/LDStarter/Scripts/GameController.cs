@@ -128,7 +128,7 @@ public class GameController : MonoBehaviour {
 		switch(state)
 		{
 		case GameState.MenuTitleScreen:
-			GUI.DrawTexture(new Rect(5,5, 600,600), MenuTitleTexture); //MenuTitleTexture.width, MenuTitleTexture.width),  MenuTitleTexture);
+			GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), MenuTitleTexture); //MenuTitleTexture.width, MenuTitleTexture.width),  MenuTitleTexture);
 			break;
 		case GameState.LevelScreen:
 			//GUI.DrawTexture(new Rect(5,5, 600,600),  LevelTexture);
