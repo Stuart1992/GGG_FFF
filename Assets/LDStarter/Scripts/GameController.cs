@@ -25,19 +25,18 @@ public class GameController : MonoBehaviour {
 	public AudioClip throw1Sound;
 	public AudioClip throw2Sound;
 	public AudioClip throw3Sound;
-	/*
-	public AudioClip hitBroSound1;
-	public AudioClip hitBroSound2;
-	public AudioClip hitLSSound1;
-	public AudioClip hitLSSound2;
-	public AudioClip hitBSSound1;
-	public AudioClip hitBSSound2;
-	*/
+
 	public AudioClip calloutBroSound;
 	public AudioClip calloutBigSound;
 	public AudioClip calloutLilSound;
 	public bool playedCallout;
 
+	public AudioClip momHappySounds;
+	public List<AudioClip> momOkSounds;
+	public AudioClip momGirrSounds;
+	public List<AudioClip> momAngrySounds;
+	public bool momClipPlayed;
+	
 	public Font GUIFont;
 	public int GUIFontSize;
 	private bool guiInitialized=false;
@@ -139,10 +138,7 @@ public class GameController : MonoBehaviour {
 			}
 			if(CurrentLevel.Over)
 			{
-				foreach(Transform t in CurrentLevel.Transforms)
-				{
-					GameObject.Destroy (t.gameObject);
-				}
+
 				EnterState (GameState.SummaryScreen);
 			}
 			else if(Input.GetKeyDown(KeyCode.Space))
@@ -156,8 +152,14 @@ public class GameController : MonoBehaviour {
 		case GameState.SummaryScreen:
 			if(Time.time - lastSwitchTime > 1 && (Input.anyKey || Input.GetMouseButton (0)))
 			{
+				foreach(Transform t in CurrentLevel.Transforms)
+				{
+					GameObject.Destroy (t.gameObject);
+				}
+
 				if(CurrentLevel.Victory)
 				{
+
 					CurrentLevel = levelGenerator.GenerateLevel(CurrentLevel.Level + 1);
 					EnterState(GameState.LevelScreen);
 				}
@@ -198,23 +200,32 @@ public class GameController : MonoBehaviour {
 			// ADD HUD CODE HERE
 		//	ShowHeartHUD();
 			if(GUI.Button (new Rect(545,525,130,70),RunButton))
-			   {IsTimeFrozen = false;
-				Time.timeScale = 1;}
-
+			   {
+				IsTimeFrozen = false;
+				Time.timeScale = 1;
+			   }
 			break;
 		case GameState.SummaryScreen:
 			if(NumFails <= 0){
 				GUI.DrawTexture (new Rect(5,5,300,300), MomHappy);
+				if(!momClipPlayed){iTween.Stab(gameObject, momHappySounds,0.5f);}
 			}
-			else if(NumFails >= NumProjectilesOrig){
+			else if(((double)NumFails/(double)NumProjectilesOrig) >= 0.7d){
 				GUI.DrawTexture (new Rect(5,5,300,300), MomAngry);
+				int idx = rand.Next(0,momAngrySounds.Count);
+				if(!momClipPlayed){iTween.Stab(gameObject, momAngrySounds[idx],0.5f);}
 			}
-			else if(((double)NumFails/(double)NumProjectilesOrig) < 0.5){
+			else if(((double)NumFails/(double)NumProjectilesOrig) < 0.4d){
 				GUI.DrawTexture (new Rect(5,5,300,300), MomOk);
+				int idx = rand.Next(0,momOkSounds.Count);
+				if(!momClipPlayed){iTween.Stab(gameObject,momOkSounds[idx],0.5f);}
 			}
-			else if(((double)NumFails/(double)NumProjectilesOrig) >= 0.5){
+			else if(0.7d > ((double)NumFails/(double)NumProjectilesOrig)
+			        && ((double)NumFails/(double)NumProjectilesOrig) >= 0.4d){
 				GUI.DrawTexture (new Rect(5,5,300,300), MomGirr);
-			}
+				if(!momClipPlayed){iTween.Stab(gameObject,momGirrSounds,0.5f);}
+			}// end big if to skip over clip replay
+			momClipPlayed = true;
 			break;
 		case GameState.TutorialScreen:
 			GUI.DrawTexture(new Rect(5,5, 600,600),  TutorialTexture);
@@ -242,6 +253,7 @@ public class GameController : MonoBehaviour {
 			NumFails = 0;
 			ResetKids();
 			IsTimeFrozen = true;
+			momClipPlayed = false;
 			break;
 		case GameState.SummaryScreen:
 		
