@@ -33,6 +33,7 @@ public class JumpInputController : MonoBehaviour {
 	{
 		rigidbody2D.gravityScale = 2.0f;
 		transform.position = startPos;
+		rigidbody2D.velocity = new Vector2(0,0);
 		rigidbody2D.mass = startMass;
 		isTrackingMouse = false;
 		hasJumped = false;
@@ -40,12 +41,14 @@ public class JumpInputController : MonoBehaviour {
 		arrow.position = new Vector3(999,999,0);
 		aimPoint = transform.position;
 		anim.SetBool("Jumping", false);
+		anim.SetBool("Hit", false);
 	}
 	
 	public void HitByPie()
 	{
 		hitByPie = true;
 		rigidbody2D.gravityScale = 0.1f;
+		anim.SetBool("Hit", true);
 		StopMotion();
 	}
 	
