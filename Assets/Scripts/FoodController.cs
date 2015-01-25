@@ -15,6 +15,7 @@ public class FoodController : MonoBehaviour {
 		gc = go.GetComponent<GameController>();	
 		rigidbody2D.isKinematic = true;  //prevents projectiles from falling before sim runs
 	}
+	
 	// Update is called once per frame
 	void FixedUpdate () {
 
