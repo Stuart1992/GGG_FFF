@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour {
 			break;
 
 		case GameState.LevelScreen:
-			if(Time.time - lastSwitchTime > 1 && (Input.anyKey || Input.GetMouseButton (0)))
+			if(true)//Time.time - lastSwitchTime > 1 && (Input.anyKey || Input.GetMouseButton (0)))
 			{
 				levelInstantiator.InstantiateLevel(CurrentLevel);
 				EnterState(GameState.Running);
@@ -131,8 +131,8 @@ public class GameController : MonoBehaviour {
 			GUI.DrawTexture(new Rect(5,5, 600,600), MenuTitleTexture); //MenuTitleTexture.width, MenuTitleTexture.width),  MenuTitleTexture);
 			break;
 		case GameState.LevelScreen:
-			GUI.DrawTexture(new Rect(5,5, 600,600),  LevelTexture);
-			GUI.TextArea(new Rect(20,20,80,80), "" + CurrentLevel.Level);
+			//GUI.DrawTexture(new Rect(5,5, 600,600),  LevelTexture);
+			//GUI.TextArea(new Rect(20,20,80,80), "" + CurrentLevel.Level);
 			break;
 		case GameState.Running:
 			// ADD HUD CODE HERE

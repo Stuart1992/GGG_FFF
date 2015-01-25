@@ -16,6 +16,7 @@ public class JumpInputController : MonoBehaviour {
 	private GameController gc;
 	private Vector2 startPos;
 	private float startMass;
+	private float startGravScale;
 	private Animator anim;
 	
 	void Start () {
@@ -26,12 +27,13 @@ public class JumpInputController : MonoBehaviour {
 		arrow = (Transform) GameObject.Instantiate(ArrowPrefab);
 		startPos = transform.position;
 		startMass = rigidbody2D.mass;
+		startGravScale = rigidbody2D.gravityScale;
 		ResetForNewLevel();
 	}
 	
 	public void ResetForNewLevel()
 	{
-		rigidbody2D.gravityScale = 2.0f;
+		rigidbody2D.gravityScale = startGravScale;
 		transform.position = startPos;
 		transform.eulerAngles = new Vector3(0,0,0);
 		rigidbody2D.velocity = new Vector2(0,0);
@@ -74,9 +76,9 @@ public class JumpInputController : MonoBehaviour {
 			}
 			else
 			{
-				aimPoint =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				Debug.Log ("  aimPoint set to " + aimPoint);
-				PointArrowToAimPoint();
+				//aimPoint =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				//Debug.Log ("  aimPoint set to " + aimPoint);
+				PointArrowAndSetAimPoint();
 			}			
 		}		
 	}
@@ -101,7 +103,8 @@ public class JumpInputController : MonoBehaviour {
 		if(aimSize > 0.1f)
 			anim.SetBool("Jumping", true);
 			
-		float jumpFactor = aimSize/MaxArrowSize;
+		float jumpFactor = Mathf.Pow(aimSize/MaxArrowSize, 0.5f);
+		
 		Debug.Log ("               jumpVec = " + jumpVec + " aimSize = " + aimSize + "  jumpFactor = " + jumpFactor);
 		
 		Vector2 targetVel = jumpFactor * MaxJumpSpeed * jumpVec.normalized;		
@@ -113,16 +116,21 @@ public class JumpInputController : MonoBehaviour {
 		rigidbody2D.AddForce(force);
 	}
 	
-	private void PointArrowToAimPoint()
+	private void PointArrowAndSetAimPoint()
 	{
 		Vector2 s = transform.position;
-		Vector2 e = aimPoint;
+		Vector2 e = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 diff = (s-e);
-		arrow.position = (s+e)/2; // midpoint between start and end		
-		arrow.localScale =  new Vector3(arrow.localScale.x, -diff.magnitude/10, arrow.localScale.z);
 		
-		float aimangle = Mathf.RoundToInt(Mathf.Atan2(diff.x, diff.y) * -180/Mathf.PI);		
-		arrow.eulerAngles = new Vector3(0,0,aimangle);		
+		Vector2 clippedEnd = s + (diff.normalized * -Mathf.Min (diff.magnitude, MaxArrowSize));
+		aimPoint = clippedEnd;
+		Vector2 clippedDiff = (s-clippedEnd);
+		
+		arrow.position = (s+clippedEnd)/2; // midpoint between start and clippedEnd		
+		arrow.localScale =  new Vector3(arrow.localScale.x, -clippedDiff.magnitude/10, arrow.localScale.z);
+		
+		float aimangle = Mathf.RoundToInt(Mathf.Atan2(clippedDiff.x, clippedDiff.y) * -180/Mathf.PI);		
+		arrow.eulerAngles = new Vector3(0,0,aimangle);
 	}
 	
 	private void StopMotion()
