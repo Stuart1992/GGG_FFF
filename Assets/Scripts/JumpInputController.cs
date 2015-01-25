@@ -33,6 +33,7 @@ public class JumpInputController : MonoBehaviour {
 	{
 		rigidbody2D.gravityScale = 2.0f;
 		transform.position = startPos;
+		transform.eulerAngles = new Vector3(0,0,0);
 		rigidbody2D.velocity = new Vector2(0,0);
 		rigidbody2D.mass = startMass;
 		isTrackingMouse = false;
