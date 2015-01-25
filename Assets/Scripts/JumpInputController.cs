@@ -18,6 +18,8 @@ public class JumpInputController : MonoBehaviour {
 	private float startMass;
 	private float startGravScale;
 	private Animator anim;
+
+	private bool outtaHere;
 	
 	void Start () {
 		GameObject go = GameObject.Find ("GameController");
@@ -29,6 +31,7 @@ public class JumpInputController : MonoBehaviour {
 		startMass = rigidbody2D.mass;
 		startGravScale = rigidbody2D.gravityScale;
 		ResetForNewLevel();
+		outtaHere = false;
 	}
 	
 	public void ResetForNewLevel()
@@ -88,7 +91,12 @@ public class JumpInputController : MonoBehaviour {
 		if(!gc.IsTimeFrozen && !hasJumped)
 		{
 			DoJump();
-		}		
+		}	
+		if ((rigidbody2D.position.x < -35 || rigidbody2D.position.x > 35)
+		     && !outtaHere) {
+			outtaHere = true;
+			gc.NumFails++;
+				}
 	}
 	
 	private void DoJump()
