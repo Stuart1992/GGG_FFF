@@ -72,6 +72,8 @@ public class GameController : MonoBehaviour {
 			break;
 
 		case GameState.Running:
+			if(Time.time - lastSwitchTime > 1 && IsTimeFrozen)
+				{Time.timeScale = 0;}
 			if(Input.GetKeyDown(KeyCode.X))
 			{
 				CurrentLevel.Over = true;
@@ -90,6 +92,7 @@ public class GameController : MonoBehaviour {
 			{
 				Debug.Log ("GameController: setting IsTimeFrozen false");
 				IsTimeFrozen = false;
+				Time.timeScale = 1;
 			}
 			break;
 
