@@ -25,6 +25,7 @@ public class JumpInputController : MonoBehaviour {
 		GameObject go = GameObject.Find ("GameController");
 		gc = go.GetComponent<GameController>();		
 		anim = gameObject.GetComponent<Animator>();
+		anim.updateMode = AnimatorUpdateMode.UnscaledTime;
 		
 		arrow = (Transform) GameObject.Instantiate(ArrowPrefab);
 		startPos = transform.position;
@@ -108,7 +109,7 @@ public class JumpInputController : MonoBehaviour {
 		
 		Vector2 jumpVec = (aimPoint - (Vector2)transform.position);
 		float aimSize = jumpVec.magnitude;	
-		if(aimSize > 0.1f)
+		if(aimSize > 0.5f)
 			anim.SetBool("Jumping", true);
 			
 		float jumpFactor = Mathf.Pow(aimSize/MaxArrowSize, 0.5f);
