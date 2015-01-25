@@ -5,8 +5,8 @@
       <File FileName="Assets\LDStarter\Scripts\LevelInstantiator.cs" Line="5" Column="1" />
       <File FileName="Assets\Scripts\JumpInputController.cs" Line="119" Column="47" />
       <File FileName="..\..\..\..\Unity\LD31OneScreen\Assets\LDStarter\Scripts\Characters\Player\PlayerMovementController.cs" Line="444" Column="1" />
-      <File FileName="Assets\LDStarter\Scripts\GameController.cs" Line="96" Column="16" />
-      <File FileName="Assets\Scripts\FoodController.cs" Line="45" Column="18" />
+      <File FileName="Assets\LDStarter\Scripts\GameController.cs" Line="256" Column="1" />
+      <File FileName="Assets\Scripts\FoodController.cs" Line="66" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
