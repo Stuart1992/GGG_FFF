@@ -13,6 +13,7 @@ public class FoodController : MonoBehaviour {
 
 		GameObject go = GameObject.Find ("GameController");
 		gc = go.GetComponent<GameController>();
+		gc.NumProjectiles++;
 		iTween.Stab (go,gc.throw1Sound,0);
 		iTween.Stab (go,gc.throw2Sound,0);
 		iTween.Stab (go,gc.throw3Sound,0);

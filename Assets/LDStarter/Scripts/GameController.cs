@@ -12,6 +12,11 @@ public class GameController : MonoBehaviour {
 	public Texture SummaryTexture;
 	public Texture TutorialTexture;
 
+	public Texture MomHappy;
+	public Texture MomOk;
+	public Texture MomGirr;
+	public Texture MomAngry;
+
 	public AudioClip jumpSound;
 	public AudioClip splat1Sound;
 	public AudioClip splat2Sound;
@@ -33,6 +38,7 @@ public class GameController : MonoBehaviour {
 
 	public int NumFails = 0;
 	public int NumProjectiles;
+	public int NumProjectilesOrig;
 	
 	private Transform Player;
 	private PlayerStatus pstat;
@@ -58,7 +64,6 @@ public class GameController : MonoBehaviour {
 		CurrentLevel = new LevelData(0);
 		levelGenerator = new LevelGenerator(rand,FoodItemPrefabs);
 		levelInstantiator = new LevelInstantiator(rand);
-
 		EnterState (GameState.MenuTitleScreen);
 	}
 	
@@ -87,6 +92,7 @@ public class GameController : MonoBehaviour {
 			break;
 
 		case GameState.Running:
+	
 			if(Time.time - lastSwitchTime > 0.5f && IsTimeFrozen)
 			{
 				Time.timeScale *= 0.96f;
@@ -95,6 +101,7 @@ public class GameController : MonoBehaviour {
 				Time.timeScale = 0;
 					if(!playedCallout)
 					{
+					NumProjectilesOrig = NumProjectiles;
 					switch(Random.Range (0,3))
 					{
 					case 0:
@@ -114,8 +121,8 @@ public class GameController : MonoBehaviour {
 				}
 			//	Time.timeScale = 0;
 			}
-		//	if(NumProjectiles <= 0) this the condition for when all pies hit the ground
-			if(Input.GetKeyDown(KeyCode.X) && !IsTimeFrozen)
+			if(NumProjectiles <= 0) //this the condition for when all pies hit the ground
+		//	if(Input.GetKeyDown(KeyCode.X) && !IsTimeFrozen)
 			{
 				CurrentLevel.Over = true;
 				CurrentLevel.Victory = true;
@@ -183,7 +190,18 @@ public class GameController : MonoBehaviour {
 		//	ShowHeartHUD();
 			break;
 		case GameState.SummaryScreen:
-			GUI.DrawTexture(new Rect(5,5, 600,600),  SummaryTexture);
+			if(NumFails <= 0){
+				GUI.DrawTexture (new Rect(5,5,300,300), MomHappy);
+			}
+			else if(NumFails >= NumProjectilesOrig){
+				GUI.DrawTexture (new Rect(5,5,300,300), MomAngry);
+			}
+			else if(((double)NumFails/(double)NumProjectilesOrig) < 0.5){
+				GUI.DrawTexture (new Rect(5,5,300,300), MomOk);
+			}
+			else if(((double)NumFails/(double)NumProjectilesOrig) >= 0.5){
+				GUI.DrawTexture (new Rect(5,5,300,300), MomGirr);
+			}
 			break;
 		case GameState.TutorialScreen:
 			GUI.DrawTexture(new Rect(5,5, 600,600),  TutorialTexture);
@@ -206,12 +224,9 @@ public class GameController : MonoBehaviour {
 	
 			break;
 		case GameState.LevelScreen:
-		
 			break;
 		case GameState.Running:
 			NumFails = 0;
-			NumProjectiles = FoodItemPrefabs.Count;
-			Debug.Log ("GameController: setting IsTimeFrozen true");
 			ResetKids();
 			IsTimeFrozen = true;
 			break;
