@@ -13,6 +13,9 @@ public class FoodController : MonoBehaviour {
 
 		GameObject go = GameObject.Find ("GameController");
 		gc = go.GetComponent<GameController>();
+		iTween.Stab (go,gc.throw1Sound,0);
+		iTween.Stab (go,gc.throw2Sound,0);
+		iTween.Stab (go,gc.throw3Sound,0);
 		rigidbody2D.AddForce((initialV * rigidbody2D.mass)/Time.fixedDeltaTime);
 //		rigidbody2D.isKinematic = true;  //prevents projectiles from falling before sim runs
 	}
@@ -34,7 +37,6 @@ public class FoodController : MonoBehaviour {
 			Transform splat = (Transform) GameObject.Instantiate(SplatterPrefab);
 			gc.CurrentLevel.Transforms.Add(splat);
 			splat.position = transform.position;
-			
 			if(jic != null)  // hit player
 			{
 				gc.NumFails++;
@@ -45,6 +47,14 @@ public class FoodController : MonoBehaviour {
 			else  // hit ground
 			{
 				splat.eulerAngles = new Vector3(0,0,-90);
+				if(gc.NumProjectiles % 2 != 0)
+				{
+				iTween.Stab (col.gameObject,gc.splat1Sound,0);
+				}
+				else
+				{
+				iTween.Stab (col.gameObject,gc.splat2Sound,0);
+				}
 			}
 			gc.NumProjectiles--;
 			gc.CurrentLevel.Transforms.Remove(transform);
